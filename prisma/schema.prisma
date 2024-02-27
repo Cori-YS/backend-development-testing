@@ -14,24 +14,29 @@ datasource db {
 }
 
 model Client {
+  id    String @id @default(uuid())
+  name  String
+  Sales Sale[]
+
+  @@map("clients")
+}
+
+model Product {
   id    String  @id @default(uuid())
   name  String
-  Sales Sales[]
+  price Decimal @default(0)
+  sales Sale[]
+
+  @@map("products")
 }
 
-model Products {
-  id      String  @id @default(uuid())
-  name    String
-  price   Decimal @default(0)
-  Sales   Sales?  @relation(fields: [salesId], references: [id])
-  salesId String?
-}
-
-model Sales {
-  id        String     @id @default(uuid())
+model Sale {
+  id        String    @id @default(uuid())
   client_id String
-  client    Client     @relation(fields: [client_id], references: [id])
-  products  Products[]
-  date      DateTime   @default(now())
-  total     Decimal    @default(0)
+  client    Client    @relation(fields: [client_id], references: [id])
+  products  Product[]
+  date      DateTime  @default(now())
+  total     Decimal   @default(0)
+
+  @@map("sales")
 }
