@@ -6,8 +6,8 @@ import { PrismaService } from 'src/database/prisma.service';
 export class ClientService {
   constructor(private prisma: PrismaService) {}
 
-  async create(data: ClientDTO): Promise<ClientDTO> {
-    return await this.prisma.client.create({ data });
+  async create({ name }: ClientDTO): Promise<ClientDTO> {
+    return await this.prisma.client.create({ data: { name } });
   }
 
   async findAll(): Promise<ClientDTO[]> {
