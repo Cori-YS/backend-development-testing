@@ -10,7 +10,7 @@ import {
 import { ProductService } from './product.service';
 import { ProductDTO } from './dtos/productDTO';
 
-@Controller('product')
+@Controller('products')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
