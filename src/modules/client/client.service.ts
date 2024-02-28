@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { ClientDTO } from './dtos/clientDTO';
-import { PrismaService } from 'src/database/prisma.service';
+import { PrismaService } from '../../database/prisma.service';
 
 @Injectable()
 export class ClientService {
@@ -15,11 +15,11 @@ export class ClientService {
   }
 
   async findOne(id: string): Promise<ClientDTO> {
-    return await this.prisma.client.findFirst({ where: { id } });
+    return await this.prisma.client.findUnique({ where: { id } });
   }
 
   async update(id: string, { name }: ClientDTO): Promise<ClientDTO> {
-    const clientExists = await this.prisma.client.findFirst({ where: { id } });
+    const clientExists = await this.prisma.client.findUnique({ where: { id } });
 
     if (!clientExists) throw new NotFoundException('Client not found!');
 
@@ -27,7 +27,7 @@ export class ClientService {
   }
 
   async remove(id: string): Promise<ClientDTO> {
-    const clientExists = await this.prisma.client.findFirst({ where: { id } });
+    const clientExists = await this.prisma.client.findUnique({ where: { id } });
 
     if (!clientExists) throw new NotFoundException('Client not found!');
 
