@@ -52,10 +52,16 @@
 3. Rodar:
 
    ```
-   npx prisma migrate dev
+   npx prisma generate
    ```
 
 4. Rodar:
+
+   ```
+   npx prisma migrate dev
+   ```
+
+5. Rodar:
    ```
    npm run start
    ```
