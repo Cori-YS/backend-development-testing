@@ -20,6 +20,6 @@ export type CreateSaleDTO = {
   client_id: string;
   client?: ClientDTO;
   products?: product[];
-  date: Date;
+  date?: Date;
   total: Decimal;
 };

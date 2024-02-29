@@ -4,7 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { CreateSaleDTO, SaleDTO } from './dtos/SaleDTO';
-import { PrismaService } from 'src/database/prisma.service';
+import { PrismaService } from '../../database/prisma.service';
 
 @Injectable()
 export class SaleService {
@@ -22,6 +22,7 @@ export class SaleService {
         data: { client_id, total, products: { connect: products } },
       });
     } catch (err) {
+      console.log(err);
       throw new BadRequestException(err.meta.cause);
     }
 
